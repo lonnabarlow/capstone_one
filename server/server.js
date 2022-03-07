@@ -30,6 +30,11 @@ app.get('/user', getUser)
 app.get('/trip/:id', getTrip)
 app.get('/trips', getAllTrips)
 
+// app.get("/trip", (req, res) => {
+ //     res.sendFile(path.join(__dirname, "../public/   trip.html"))
+ // })
+    
+
 app.get('/journals', getJournals)
 
 app.get("/", (req, res) => {
@@ -43,14 +48,6 @@ app.delete('/api', (req, res) => {
     console.log("DELETE Request Called for /api endpoint")
     res.send("DELETE Request Called")
  })
-
-// app.get("/trip", (req, res) => {
-//     res.sendFile(path.join(__dirname, "../public/trip.html"))
-// })
-
-
-
-
 
 
 

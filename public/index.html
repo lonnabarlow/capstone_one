@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo"><h1>Travelers Wanted</h1></div>
+        <ul id="nav">
+            <li><a href="/" id="home">Home</a></li>
+            <li><a href="/" class="alert">About</a></li>
+            <li><a href="/" class="alert" id="alertbox">Reviews</a></li>
+            <li><a href="/" id="home">Login</a></li>
+        </ul>
+        <div class="alert" id="alertbox"></div>
+    </header>
+
+    <div class="main-container">
+        
+        <div class="left-side" id="trip-gallery">
+            
+        </div>
+        <div class="right-side">
+            <aside class="topper" id="formtopper">
+                <h2>Adventure Awaits</h2>
+            </aside>
+            <section>
+                <aside>
+                    <form>
+                        <label for="location">Location:</label>
+                        <input type="text" id="location" name="location">
+                        <label for="dates">Dates:</label>
+                        <input type="text" id="dates" name="dates">
+                        <label for="tname">Trip Name:</label>
+                        <input type="text" id="tname" name="tname">
+                        <label for="image1">Image:</label>
+                        <input type="image1" id="image1" name="image1">
+                        <br>
+                    </form>
+                    <button class="form-btn" id="submit">Submit</button>
+                </aside>
+            </section>
+        </div>
+    </div>
+    <!--
+        TRIP VIEW
+    -->
+    <div class="trip-main">
+        <div class="trip-container">
+            <p>Where should we go to next...</p>
+            
+            <br>
+            <div class="tripbox" id="place"></div>
+            <div class="tripbox" id="journal"></div>
+            <div class="tripbox" id="review"></div>
+            <div class="tripbox" id="dates"></div>
+            <div class="tripbox" id="trip-image"></div>
+        </div>
+
+         
+    </div>
+    <footer>
+        <h5>Travel with Lonna and her magical circus.</h5>
+    </footer>
+</body>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="index.js"></script>
+</html>

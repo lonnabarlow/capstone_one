@@ -107,7 +107,7 @@ alertTwo.addEventListener("click", newAlert)
 
 
 
-// axios.delete('url', { data: payload }).then()
+axios.delete('url', { data: payload }).then()
 
 
 function addToTripView(data){
@@ -123,10 +123,14 @@ function addToTripView(data){
 
 
     // ADD JOURNAL
+    const journal_div = document.getElementById('journal');
+    const entry = document.createTextNode(data.journal)
+    targetDiv.appendChild(entry)
+    console.log(data)
 
+    
 
-    // queryselector
-    // put data into divs
+    
     console.log("Add trip info")
 
 

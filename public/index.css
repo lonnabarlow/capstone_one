@@ -230,6 +230,7 @@ footer {
     -webkit-background-size: cover;
     display: none;
     position: relative;
+    opacity: 75%;
     
     
     }
@@ -245,7 +246,7 @@ footer {
      height: 100px;
      width: 100px;
      background-color: #fff;
-     box-shadow: 2px 2px 5px rgb(0 0 0 / 30%);
+     box-shadow: 3px 3px 6px rgb(0 0 0 / 30%);
  } 
     .buttons {
         height: 20px;
@@ -292,6 +293,16 @@ footer {
         left: 42%;
         height: 340px;
         width: 250px;
+    }
+    #second {
+        bottom: 50px;
+        left: 69%;
+        height: 270px;
+        width: 200px;
+        background: lightgrey;
+        justify-content: center;
+        padding: 10px;
+        margin: 15px;
     }
 
     #review{

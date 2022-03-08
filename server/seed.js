@@ -55,14 +55,14 @@ module.exports = {
         insert into users (id, name, email, password)
         values (1, 'Lonna Barlow 2', 'Lonna@test.com', 'asdf');
 
-        insert into trips (id, name, image_url, location, star_rating, start_date, end_date, created_at, user_id)
-        values (1, 'Paris', 'https://www.toureiffel.paris/sites/default/files/styles/1200x675/public/actualite/image_principale/vue_depuisjardins_webbanner_3.jpg?itok=FqfmDgIB', 'Paris', 5, '2019-2-24', '2019-3-6', '2022-3-2', 1),
-        (2, 'Norway', 'https://outsider.com/wp-content/uploads/2021/10/northern-lights-will-be-visible-far-south-virginia-due-geomagnetic-storm-585x390.jpg', 'Oslo', 5, '2019-2-24', '2019-3-6', '2022-3-2', 1);;
+        insert into trips ( name, image_url, location, star_rating, start_date, end_date, created_at, user_id)
+        values ( 'Paris', 'https://www.toureiffel.paris/sites/default/files/styles/1200x675/public/actualite/image_principale/vue_depuisjardins_webbanner_3.jpg?itok=FqfmDgIB', 'Paris', 5, '2019-2-24', '2019-3-6', '2022-3-2', 1),
+        ('Norway', 'https://outsider.com/wp-content/uploads/2021/10/northern-lights-will-be-visible-far-south-virginia-due-geomagnetic-storm-585x390.jpg', 'Oslo', 5, '2019-2-24', '2019-3-6', '2022-3-2', 1);;
         
             
-        insert into journals (id, title, description, created_at, trip_id)  
-        values (1, 'Norway Trip', 'Today we landed in beautiful Oslo.', '2022-3-2', 1),
-        (2, 'Northern Lights', 'After a plane ride, a ferry ride, two hours in a van, and then another driving leg of the trip we finally made it to the artic circle.', '2022-3-2', 1);
+        insert into journals (title, description, created_at, trip_id)  
+        values ('Norway Trip', 'Today we landed in beautiful Oslo.', '2022-3-2', 1),
+        ( 'Northern Lights', 'After a plane ride, a ferry ride, two hours in a van, and then another driving leg of the trip we finally made it to the artic circle.', '2022-3-2', 1);
 
        
         `).then(() => {

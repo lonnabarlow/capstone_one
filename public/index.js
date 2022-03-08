@@ -13,20 +13,45 @@ homeButton.addEventListener('click', () => {
     tripMain.style.display = "none";
 });
 
+function formSubmit() {
+    const tripForm = document.querySelector("#trip-form")
+    // const formData = new FormData(tripForm)
+    const formData = {
+        location: document.querySelector('#location').value ,
+        dates: document.querySelector('#dates').value,
+        name: document.querySelector('#tname').value,
+        image_url: document.querySelector('#image1').value
+    }
+    
+
+    axios
+    .post('/trips', formData,{
+        headers: {
+          'Content-Type': 'Application/json'
+        }})
+    .then(res => console.log(res.data))
+}
+
 function addEventListeners() {
     const divs = document.querySelectorAll(".img-cont")
     divs.forEach(el => {
         el.addEventListener('click', (e) => {
             console.log(e.target.id)
             tripId = e.target.id
+            mainContainer.style.display = "none";
+            tripMain.style.display = "block";
             axios
                 .get(`/trip/${tripId}`)
                 .then(res => addToTripView(res.data))
-                mainContainer.style.display = "none";
-                tripMain.style.display = "block";
+                
         })
     })
+
+    const formListen = document.querySelector(".form-btn")
+    formListen.addEventListener("click", formSubmit)
+
 }
+
 
 
 function loadTrips() {
@@ -85,6 +110,25 @@ alertTwo.addEventListener("click", newAlert)
 // axios.delete('url', { data: payload }).then()
 
 
-function addToTripView(){
+function addToTripView(data){
+
+    // ADD DATES
+    const date_div = document.getElementById('travel_dates')
+    console.log(data)
+
+    date_div.innerHTML = new Date(data.start_date).toLocaleDateString() + ' - ' + new Date(data.end_date).toLocaleDateString();
+
+
+    // ADD IMG
+
+
+    // ADD JOURNAL
+
+
+    // queryselector
+    // put data into divs
     console.log("Add trip info")
+
+
 }
+

@@ -3,7 +3,7 @@ const path = require('path')
 require('dotenv').config()
 const Sequelize = require('sequelize')
 const {seed} = require('./seed.js')
-const {getUser, getTrip, getAllTrips, getJournals} = require('./controller.js')
+const {getUser, getTrip, getAllTrips, postTrip,getJournals} = require('./controller.js')
 
 
 const sequelize = new Sequelize(process.env.CONNECTION_STRING, {
@@ -34,6 +34,7 @@ app.get('/trips', getAllTrips)
  //     res.sendFile(path.join(__dirname, "../public/   trip.html"))
  // })
     
+app.post('/trips', postTrip)
 
 app.get('/journals', getJournals)
 

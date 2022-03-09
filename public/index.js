@@ -120,7 +120,7 @@ function addToTripView(data){
     const title_div = document.getElementById('review')
     tname = document.createElement('h2')
     tname.innerHTML = data.name
-    title_div.append(tname)// .append(data.name)
+    title_div.replaceChildren(tname)// .append(data.name)
 
     // ADD IMG
     const img_div = document.getElementById('second')

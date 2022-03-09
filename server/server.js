@@ -3,7 +3,7 @@ const path = require('path')
 require('dotenv').config()
 const Sequelize = require('sequelize')
 const {seed} = require('./seed.js')
-const {getUser, getTrip, getAllTrips, postTrip,getJournals} = require('./controller.js')
+const {getUser, getTrip, getAllTrips, deleteTrip, postTrip,getJournals} = require('./controller.js')
 
 
 const sequelize = new Sequelize(process.env.CONNECTION_STRING, {
@@ -27,7 +27,17 @@ app.post('/seed', seed)
 
 app.get('/user', getUser)
 
-app.get('/trip/:id', getTrip)
+app.get('/trip/:id', (req, res) => {
+
+   getTrip(req, res).then(tripRes => {
+        getJournals(tripRes.id).then(journalRes => {
+            tripRes['journals'] = journalRes
+            res.status(200).send(tripRes)
+        })
+    })
+
+})
+
 app.get('/trips', getAllTrips)
 
 // app.get("/trip", (req, res) => {
@@ -45,10 +55,7 @@ app.get("/", (req, res) => {
     // }
 });
 
-app.delete('/api', (req, res) => {
-    console.log("DELETE Request Called for /api endpoint")
-    res.send("DELETE Request Called")
- })
+app.delete('/trip', deleteTrip)
 
 
 

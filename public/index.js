@@ -9,8 +9,7 @@ const tripGallery = document.querySelector("#trip-gallery")
 
 
 homeButton.addEventListener('click', () => {
-    mainContainer.style.display = "block";
-    tripMain.style.display = "none";
+    loadHomePage();
 });
 
 function formSubmit() {
@@ -29,21 +28,22 @@ function formSubmit() {
         headers: {
           'Content-Type': 'Application/json'
         }})
-    .then(res => console.log(res.data))
+    .then(res => loadHomePage())
+}
+
+function loadTrip(tripId){
+    mainContainer.style.display = "none";
+    tripMain.style.display = "block";
+    axios
+        .get(`/trip/${tripId}`)
+        .then(res => addToTripView(res.data))
 }
 
 function addEventListeners() {
     const divs = document.querySelectorAll(".img-cont")
     divs.forEach(el => {
         el.addEventListener('click', (e) => {
-            console.log(e.target.id)
-            tripId = e.target.id
-            mainContainer.style.display = "none";
-            tripMain.style.display = "block";
-            axios
-                .get(`/trip/${tripId}`)
-                .then(res => addToTripView(res.data))
-                
+            loadTrip(e.target.id)
         })
     })
 
@@ -52,7 +52,11 @@ function addEventListeners() {
 
 }
 
-
+function loadHomePage() {
+    mainContainer.style.display = "flex";
+    tripMain.style.display = "none";
+    loadTrips() 
+}
 
 function loadTrips() {
     axios.get("/trips")
@@ -75,24 +79,14 @@ function loadTrips() {
                 imgDiv.setAttribute('id', item.id)
                 imgDiv.style.backgroundImage = `url('${item.image_url}')`;
                 galDiv.appendChild(imgDiv);
-                    console.log(item)
                 tripGallery.appendChild(galDiv)
             })
             addEventListeners();
         }
     })
 }
-loadTrips()
 
-function oneTrip() {
-    axios.get("/trip/:id")
-        .then(res => {
-        tripGallery.innerHTML = null;
-        const dataArr = res.data
-        console.log(dataArr)
-        })
 
-}
 function getAlert(){
     alert("Under construction come back later")
 }
@@ -107,32 +101,57 @@ alertTwo.addEventListener("click", newAlert)
 
 
 
-axios.delete('url', { data: payload }).then()
+
 
 
 function addToTripView(data){
 
     // ADD DATES
     const date_div = document.getElementById('travel_dates')
-    console.log(data)
-
+    // console.log(data)
+    
     date_div.innerHTML = new Date(data.start_date).toLocaleDateString() + ' - ' + new Date(data.end_date).toLocaleDateString();
-
+    
+    
+    document.getElementById("deleteBtn").addEventListener("click", function(){
+        axios.delete('/trip', {data:{id: data.id}}).then(loadHomePage()).catch(err => console.log(err))
+    } )
+    
+    const title_div = document.getElementById('review')
+    tname = document.createElement('h2')
+    tname.innerHTML = data.name
+    title_div.append(tname)// .append(data.name)
 
     // ADD IMG
-
+    const img_div = document.getElementById('second')
+    img_div.style.backgroundImage = `url('${data.image_url}')`;
 
     // ADD JOURNAL
+    // Loop through data.journals
     const journal_div = document.getElementById('journal');
-    const entry = document.createTextNode(data.journal)
-    targetDiv.appendChild(entry)
-    console.log(data)
+    data.journals.forEach(journal => {
+
+        const title = document.createElement('h3')
+        title.innerHTML = journal.title
+        const jdate = document.createElement('span')
+
+        jdate.innerHTML = new Date(journal.created_at).toLocaleDateString()
+        const desc = document.createElement('p')
+        desc.innerHTML = journal.description
+        journal_div.appendChild(title)
+        journal_div.appendChild(jdate)
+        journal_div.appendChild(desc)
+    })
+    // console.log(data)
 
     
 
     
-    console.log("Add trip info")
+    // console.log("Add trip info")
 
 
 }
 
+
+
+loadHomePage();
